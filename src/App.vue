@@ -11,6 +11,6 @@ export default {
 
 <style>
 #app {
-    font-family: "Noto Sans Japanese";
+    font-family: "Noto Sans Japanese", sans-serif;
 }
 </style>
