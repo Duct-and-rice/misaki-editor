@@ -1,6 +1,9 @@
-# misaki-editor
+# Misaki Editor - A Yaruo Thread Editor
+Javascriptで動くやる夫スレエディタ(になる予定のもの)です。
 
-> A Yaruo Thread Editor
+名前の「Misaki」は、拙作[AAで学ぶネット事件簿](https://duct-and-rice.github.io/yaruo-blog/2017/09/02/internet-casefile-2/)に登場する岬次郎に由来します。
+~~だって「やる夫路線エディタ」とか「尊師エディタ」とかじゃあからさま過ぎじゃないか~~
+
 
 ## Build Setup
 
@@ -27,4 +30,3 @@ npm run e2e
 npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
