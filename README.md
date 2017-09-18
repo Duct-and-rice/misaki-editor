@@ -1,4 +1,5 @@
-[![Travis](https://img.shields.io/travis/Duct-and-rice/misaki-editor.svg)]()
+[![Travis](https://img.shields.io/travis/Duct-and-rice/misaki-editor.svg)](https://travis-ci.org/Duct-and-rice/misaki-editor)
+[![Coveralls](https://img.shields.io/coveralls/Duct-and-rice/misaki-editor.svg)](https://coveralls.io/github/Duct-and-rice/misaki-editor)
 # Misaki Editor
 JavaScriptで書いた(く)、Webアプリの形式を取ったやる夫スレエディタです。
 
