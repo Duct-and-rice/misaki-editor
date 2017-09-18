@@ -1,4 +1,4 @@
-let instance
+export let instance
 export default class DOMRuler {
     constructor () {
         if (!instance) {
