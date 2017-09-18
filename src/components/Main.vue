@@ -11,7 +11,6 @@ export default {
     name: 'main',
     data () {
         return {
-            msg: ''
         }
     }
 }
