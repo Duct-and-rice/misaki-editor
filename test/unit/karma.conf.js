@@ -23,11 +23,12 @@ module.exports = function (config) {
             noInfo: true
         },
         coverageReporter: {
-            dir: '../../coverage',
-            reporters: [
-                { type: 'lcov', subdir: '.' },
-                { type: 'text-summary' }
-            ]
+            type: 'lcov',
+            dir: '../../coverage'
+            // reporters: [
+            //     { type: 'lcov', subdir: '.' },
+            //     { type: 'text-summary' }
+            // ]
         }
     })
 }
