@@ -1,4 +1,3 @@
-/* eslint no-duplicate-imports:0 */
 import {DOMRuler, CanvasRuler} from '@/lib/ruler'
 import WebFont from 'webfontloader'
 
@@ -19,7 +18,6 @@ describe('Ruler', function () {
 
     describe('Width', function () {
         before(done => {
-            this.timeout(10000)
             WebFont.load({
                 custom: {
                     families: ['Stmr']
