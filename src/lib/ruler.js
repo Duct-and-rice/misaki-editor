@@ -46,8 +46,9 @@ export class CanvasRuler {
 
     getWidth (str) {
         if (this.ruler.getContext) {
-            var context = this.ruler.getContext('2d')
-            var metrics = context.measureText(str)
+            const context = this.ruler.getContext('2d')
+            context.font = '16px Stmr'
+            const metrics = context.measureText(str)
             return metrics.width
         }
         return -1

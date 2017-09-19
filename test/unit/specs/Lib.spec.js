@@ -34,5 +34,11 @@ describe('Ruler', () => {
             expect(ruler.getWidth('　')).to.equal(11)
             done()
         })
+        it('CanvasRuler Spaces', done => {
+            const ruler = new CanvasRuler()
+            expect(ruler.getWidth(' ')).to.equal(5)
+            expect(ruler.getWidth('　')).to.equal(11)
+            done()
+        })
     })
 })
