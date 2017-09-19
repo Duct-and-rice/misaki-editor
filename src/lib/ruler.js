@@ -51,6 +51,5 @@ export class CanvasRuler {
             const metrics = context.measureText(str)
             return metrics.width
         }
-        return -1
     }
 }
