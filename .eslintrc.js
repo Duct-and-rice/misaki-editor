@@ -7,7 +7,7 @@ module.exports = {
         sourceType: 'module'
     },
     env: {
-        browser: true,
+        browser: true
     },
     // https://github.com/standard/standard/blob/master/docs/RULES-en.md
     extends: 'standard',
@@ -26,6 +26,7 @@ module.exports = {
         // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
 
-        'indent': ['error', 4]
+        'indent': ['error', 4],
+        'arrow-parens': ['error', 'as-needed']
     }
 }

@@ -28,7 +28,7 @@ describe('Ruler', () => {
                 }
             })
         })
-        it('DOMRuler Spaces', (done) => {
+        it('DOMRuler Spaces', done => {
             const ruler = new DOMRuler()
             expect(ruler.getWidth(' ')).to.equal(5)
             expect(ruler.getWidth('　')).to.equal(11)
