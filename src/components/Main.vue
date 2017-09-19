@@ -1,22 +1,26 @@
 <template lang="pug">
-.main
+ph-window.main
     app-header
-    .window-content
-        ph-button aa
+    app-tab-group
+    ph-window-content
     app-footer
 </template>
 
 <script>
+import TabGroup from './TabGroup'
+
 export default {
     name: 'main',
     data () {
         return {
         }
+    },
+    components: {
+        'app-tab-group': TabGroup
     }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>
