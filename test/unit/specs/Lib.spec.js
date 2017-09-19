@@ -2,14 +2,6 @@
 import {DOMRuler, CanvasRuler} from '@/lib/ruler'
 import WebFont from 'webfontloader'
 
-function rulerSpeed (ruler, num, label) {
-    console.time(label)
-    for (let i = 0; i < num; i++) {
-        ruler.getWidth(i + '')
-    }
-    console.timeEnd(label)
-}
-
 describe('Ruler', function () {
     describe('Singleton', function () {
         it('DOMRuler must be a singleton', function () {
@@ -27,6 +19,7 @@ describe('Ruler', function () {
 
     describe('Width', function () {
         before(done => {
+            this.timeout(10000)
             WebFont.load({
                 custom: {
                     families: ['Stmr']
@@ -45,16 +38,6 @@ describe('Ruler', function () {
             const ruler = new CanvasRuler()
             expect(ruler.getWidth(' ')).to.equal(5)
             expect(ruler.getWidth('　')).to.equal(11)
-        })
-        it('Measure DOMRuler Speed', function () {
-            this.timeout(10000)
-            const ruler = new DOMRuler()
-            rulerSpeed(ruler, 10000, 'DOMRuler')
-        })
-        it('Measure CanvasRuler Speed', function () {
-            this.timeout(10000)
-            const ruler = new CanvasRuler()
-            rulerSpeed(ruler, 10000, 'CanvasRuler')
         })
     })
 })
