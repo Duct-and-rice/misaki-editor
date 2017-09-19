@@ -1,12 +1,12 @@
-import { mutations } from '../../../src/store'
+import mutations from '../../../src/store/mutations'
 
-const { ADD_TAB } = mutations
+const { addTab } = mutations
 describe('Store', function () {
     describe('Mutations', function () {
-        it('mutations has ADD_TAB', function () {
-            const store = []
-            ADD_TAB(store, {title: 'test'})
-            expect(store[0]).to.have.property('title', 'test')
+        it('addTab', function () {
+            const store = {tabs: []}
+            addTab(store, {title: 'test'})
+            expect(store.tabs[0]).to.have.property('title', 'test')
         })
     })
 })

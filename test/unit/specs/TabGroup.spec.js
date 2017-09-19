@@ -9,7 +9,4 @@ describe('TabGroup.vue', function () {
     it('data is a function', function () {
         expect(TabGroup.data).to.be.a('function')
     })
-    it('tabs is a array', function () {
-        expect(TabGroup.data().tabs).to.be.a('Array')
-    })
 })
