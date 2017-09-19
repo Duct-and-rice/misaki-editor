@@ -10,7 +10,12 @@ export default {
     name: 'tab-group',
     data () {
         return {
-            tabs: [{title: 'a'}]
+        }
+    },
+    props: {
+        tabs: {
+            type: Array,
+            required: true
         }
     }
 }

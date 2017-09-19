@@ -1,4 +1,12 @@
 /* eslint no-unused-vars:0 */
-import * as types from './mutation-types'
+import types from './mutation-types'
 
-export default function () {}
+class Tab {
+    constructor (title) {
+        this.title = title || 'New Tab'
+    }
+}
+
+export function addNewTab ({commit}) {
+    commit(types.ADD_TAB, new Tab())
+}

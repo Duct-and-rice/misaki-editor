@@ -7,6 +7,8 @@ import mutations from './mutations'
 Vue.use(Vuex)
 
 const state = {
+    tabs: [],
+    currentTab: 0
 }
 
 export default new Vuex.Store({
