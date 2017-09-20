@@ -17,6 +17,7 @@ describe('Ruler', function () {
     })
 
     describe('Width', function () {
+        this.timeout(1000)
         before(done => {
             WebFont.load({
                 custom: {
