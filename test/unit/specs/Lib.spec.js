@@ -1,4 +1,5 @@
 import {DOMRuler, CanvasRuler} from '@/lib/ruler'
+import {SPACES, default as widthSpace} from '@/lib/space'
 import WebFont from 'webfontloader'
 
 describe('Ruler', function () {
@@ -17,7 +18,7 @@ describe('Ruler', function () {
     })
 
     describe('Width', function () {
-        this.timeout(1000)
+        this.timeout(10000)
         before(done => {
             WebFont.load({
                 custom: {
@@ -38,5 +39,32 @@ describe('Ruler', function () {
             expect(ruler.getWidth(' ')).to.equal(5)
             expect(ruler.getWidth('　')).to.equal(11)
         })
+        it('Special Spaces', function () {
+            const ruler = new CanvasRuler()
+            for (const space of SPACES) {
+                expect(ruler.getWidth(space.str)).to.equal(space.dots)
+            }
+        })
+        it('Parallel Ruler', function (done) {
+            const ruler = new CanvasRuler()
+            Promise.all(SPACES.map(space =>
+                new Promise(resolve => {
+                    expect(ruler.getWidth(space.str)).to.equal(space.dots)
+                    resolve()
+                })
+            )).then(() => done())
+        })
+    })
+})
+
+describe('widthSpace', function () {
+    it('Spaces', function () {
+        const ruler = new CanvasRuler()
+        for (let i = 0; i < 100; i++) {
+            const sp = widthSpace(i)
+            expect(ruler.getWidth(sp)).to.equal(i)
+            expect(sp.startsWidth(' ')).to.be.false
+            expect(sp).to.include('  ')
+        }
     })
 })

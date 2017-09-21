@@ -15,14 +15,20 @@ export class DOMRuler {
             ruler.id = 'dom-ruler'
             document.body.appendChild(ruler)
             this.ruler = document.getElementById('dom-ruler')
+            this.isLock = false
             domRulerInstance = this
         }
         return domRulerInstance
     }
 
     getWidth (str) {
+        if (this.isLock) {
+            throw new Error('Locked')
+        }
+        this.isLock = true
         this.ruler.textContent = '.' + str + '.'
         const width = this.ruler.offsetWidth
+        this.isLock = false
         this.ruler.style.fontFamily
         return width - 6
     }
@@ -39,16 +45,22 @@ export class CanvasRuler {
             ruler.height = 0
             document.querySelector('body').appendChild(ruler)
             this.ruler = ruler
+            this.isLock = false
             canvasRulerInstance = this
         }
         return canvasRulerInstance
     }
 
     getWidth (str) {
+        if (this.isLock) {
+            throw new Error('Locked')
+        }
         if (this.ruler.getContext) {
+            this.isLock = true
             const context = this.ruler.getContext('2d')
             context.font = '16px Stmr'
             const metrics = context.measureText(str)
+            this.isLock = false
             return metrics.width
         }
     }
