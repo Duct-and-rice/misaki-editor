@@ -31,11 +31,13 @@ describe('Ruler', function () {
         })
         it('DOMRuler Spaces', function () {
             const ruler = new DOMRuler()
+            expect(ruler.getWidth('')).to.equal(0)
             expect(ruler.getWidth(' ')).to.equal(5)
             expect(ruler.getWidth('　')).to.equal(11)
         })
         it('CanvasRuler Spaces', function () {
             const ruler = new CanvasRuler()
+            expect(ruler.getWidth('')).to.equal(0)
             expect(ruler.getWidth(' ')).to.equal(5)
             expect(ruler.getWidth('　')).to.equal(11)
         })
@@ -60,7 +62,7 @@ describe('Ruler', function () {
 describe('widthSpace', function () {
     it('Spaces', function () {
         const ruler = new CanvasRuler()
-        for (let i = 0; i < 100; i++) {
+        for (let i = 1; i < 100; i++) {
             const sp = widthSpace(i)
             expect(ruler.getWidth(sp)).to.equal(i)
             expect(sp.startsWidth(' ')).to.be.false

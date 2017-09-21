@@ -10,3 +10,11 @@ export const SPACES = Object.freeze([
     {dots: 11, str: '\u3000', name: 'IDEOGRAPHIC SPACE', unicode: false},
     {dots: 16, str: '\u2003', name: 'EN SPACE', unicode: true}
 ])
+
+export default function (sp) {
+    if (typeof sp !== 'number') {
+        throw new TypeError()
+    }
+    console.log(sp)
+    return ''
+}
