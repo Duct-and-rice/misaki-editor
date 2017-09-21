@@ -60,6 +60,9 @@ describe('Ruler', function () {
 })
 
 describe('widthSpace', function () {
+    it('Ideographic Space', function () {
+        expect(widthSpace(11)).to.equal('　')
+    })
     it('Spaces', function () {
         const ruler = new CanvasRuler()
         for (let i = 1; i < 100; i++) {

@@ -11,9 +11,25 @@ export const SPACES = Object.freeze([
     {dots: 16, str: '\u2003', name: 'EN SPACE', unicode: true}
 ])
 
+const DOTS_TO_SPACE = Object.freeze((() => {
+    const result = []
+    for (const space of SPACES) {
+        if (space.name === 'SPACE') {
+            continue
+        }
+        result[space.dots] = space
+    }
+    return result
+})())
+
 export default function (sp) {
     if (typeof sp !== 'number') {
         throw new TypeError()
+    }
+    console.log(DOTS_TO_SPACE)
+    const mod = sp % 11
+    if (mod === 0) {
+        return DOTS_TO_SPACE[11].str.repeat(sp / 11)
     }
     console.log(sp)
     return ''
