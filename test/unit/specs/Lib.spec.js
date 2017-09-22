@@ -61,13 +61,13 @@ describe('Ruler', function () {
         it('DOMRuler Spaces', function () {
             const ruler = new DOMRuler()
             ruler.isLock = true
-            expect(ruler.getWidth).to.throw()
+            expect(() => ruler.getWidth('')).to.throw()
             ruler.isLock = false
         })
         it('CanvasRuler Spaces', function () {
             const ruler = new CanvasRuler()
             ruler.isLock = true
-            expect(ruler.getWidth).to.throw()
+            expect(() => ruler.getWidth('')).to.throw()
             ruler.isLock = false
         })
     })
@@ -81,7 +81,7 @@ describe('widthSpace', function () {
         const ruler = new CanvasRuler()
         for (let i = 1; i < 50; i++) {
             const sp = widthSpace(i)
-            console.log(i, sp.replace(/ /g, 'H').replace(/\u3000/g, 'A'))
+            // console.log(i, sp.replace(/ /g, 'H').replace(/\u3000/g, 'A'))
             expect(ruler.getWidth(sp)).to.equal(i)
             expect(sp.charAt(0)).not.to.equal(' ')
             expect(sp).not.to.include('  ')

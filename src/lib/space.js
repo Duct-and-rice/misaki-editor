@@ -37,9 +37,6 @@ export function adjustWithUnicode (adjuster) {
     if (adjuster === 0) {
         return ''
     }
-    if (adjuster === 16) {
-        return DOTS_TO_SPACE[16]
-    }
     let res = ''
     if (adjuster > 5) {
         adjuster -= 5
@@ -90,7 +87,7 @@ export default function widthSpace (sp) {
 
     if (mod !== 0 && mod !== 5 && a * 11 + h * 5 !== sp) {
         if (mod <= 4) {
-            console.log(gap, a - gap, h + 2 * gap)
+            // console.log(gap, a - gap, h + 2 * gap)
             if (a - gap >= h + 2 * gap &&
                 gap >= 0 &&
                 a >= gap
@@ -102,7 +99,7 @@ export default function widthSpace (sp) {
                 h = 0
             }
         } else {
-            console.log('a', gap, a, a - gap, h + 2 * gap)
+            // console.log('a', gap, a, a - gap, h + 2 * gap)
             if (a - gap >= h + 2 * gap &&
                 gap >= 0 &&
                 a >= gap
@@ -118,7 +115,7 @@ export default function widthSpace (sp) {
     }
     if (a < h) {
     }
-    console.log(a, h, sp, mod)
+    // console.log(a, h, sp, mod)
 
     return generateSpaceFromAH(a, h) + adjustWithUnicode(adjust ? mod : 0)
 }
