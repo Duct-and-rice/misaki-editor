@@ -24,6 +24,9 @@ const DOTS_TO_SPACE = Object.freeze((() => {
 })())
 
 export function generateSpaceFromAH (a, h) {
+    if (a === 0 && h === 1) {
+        return HALF_SPACE
+    }
     if (a < h || a < 0 || h < 0) {
         throw new Error('a:' + a + ',h:' + h)
     }
@@ -46,6 +49,45 @@ export function adjustWithUnicode (adjuster) {
     return res
 }
 
+export function oneDotReduce (ah) {
+    ah = (() => {
+        // console.log(ah)
+        if (ah.a - 1 >= ah.h + 2) {
+            return {a: ah.a - 1, h: ah.h + 2, adj: ah.adj}
+        } else if (ah.adj >= 1) {
+            return {a: ah.a, h: ah.h, adj: ah.adj - 1}
+        } else if (ah.h >= 1) {
+            return {a: ah.a, h: ah.h - 1, adj: ah.adj + 4}
+        } else if (ah.a >= 1 && ah.adj < 6) {
+            return {a: ah.a - 1, h: ah.h + 1, adj: ah.adj + 5}
+        } else {
+            return null
+        }
+    })()
+    // console.log(ah)
+    if (ah.h >= 1 && ah.adj <= 6) {
+        ah.h--
+        ah.adj += 5
+    }
+    // ah = adjToAH(ah)
+    return ah
+}
+
+export function adjToAH (ah) {
+    if (ah.adj === 5) {
+        ah.h++
+        ah.adj = 0
+    }
+    const gap = 11 - ah.adj
+    if (ah.a + 1 - gap >= ah.h + 2 * gap) {
+        ah.a++
+        ah.a -= gap
+        ah.h += 2 * gap
+        ah.adj = 0
+    }
+    return ah
+}
+
 export default function widthSpace (sp) {
     if (typeof sp !== 'number') {
         throw new TypeError()
@@ -53,8 +95,7 @@ export default function widthSpace (sp) {
     const mod = sp % 11
     let a = 0
     let h = 0
-    let gap = 0
-    let adjust = true
+    let adj = 0
     switch (mod) {
     case 0:
         a = Math.floor(sp / 11)
@@ -65,7 +106,6 @@ export default function widthSpace (sp) {
     case 4:
         a = Math.floor(sp / 11)
         h = 1
-        gap = 5 - mod
         break
     case 5:
         if (sp === 5) {
@@ -73,49 +113,29 @@ export default function widthSpace (sp) {
         }
         a = Math.floor(sp / 11)
         h = 1
-        adjust = false
         break
     case 6:
     case 7:
     case 8:
     case 9:
     case 10:
-        a = Math.floor(sp / 11)
-        gap = 11 - mod
+        a = Math.ceil(sp / 11)
         break
     }
 
-    if (mod !== 0 && mod !== 5 && a * 11 + h * 5 !== sp) {
-        if (mod <= 4) {
-            // console.log(gap, a - gap, h + 2 * gap)
-            if (a - gap >= h + 2 * gap &&
-                gap >= 0 &&
-                a >= gap
-            ) {
-                a -= gap
-                h += 2 * gap
-                adjust = false
-            } else {
-                h = 0
-            }
-        } else {
-            // console.log('a', gap, a, a - gap, h + 2 * gap)
-            if (a - gap >= h + 2 * gap &&
-                gap >= 0 &&
-                a >= gap
-            ) {
-                a -= gap
-                h += 2 * gap
-                if ((a + 1) * 11 + h * 5 === sp) {
-                    a++
-                }
-                adjust = false
-            }
+    if (mod !== 0 && mod !== 5) {
+        while (a * 11 + h * 5 + adj !== sp) {
+            // console.log(a, h, adj, a * 11 + h * 5 + adj)
+            const ah = (oneDotReduce({a, h, adj}))
+            a = ah.a
+            h = ah.h
+            adj = ah.adj
         }
+        const ah = adjToAH({a, h, adj})
+        a = ah.a
+        h = ah.h
+        adj = ah.adj
     }
-    if (a < h) {
-    }
-    // console.log(a, h, sp, mod)
 
-    return generateSpaceFromAH(a, h) + adjustWithUnicode(adjust ? mod : 0)
+    return generateSpaceFromAH(a, h) + adjustWithUnicode(adj)
 }
