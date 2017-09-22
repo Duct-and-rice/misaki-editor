@@ -57,6 +57,20 @@ describe('Ruler', function () {
             )).then(() => done())
         })
     })
+    describe('Locking', function () {
+        it('DOMRuler Spaces', function () {
+            const ruler = new DOMRuler()
+            ruler.isLock = true
+            expect(ruler.getWidth).to.throw()
+            ruler.isLock = false
+        })
+        it('CanvasRuler Spaces', function () {
+            const ruler = new CanvasRuler()
+            ruler.isLock = true
+            expect(ruler.getWidth).to.throw()
+            ruler.isLock = false
+        })
+    })
 })
 
 describe('widthSpace', function () {
