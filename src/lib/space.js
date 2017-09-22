@@ -23,14 +23,14 @@ const DOTS_TO_SPACE = Object.freeze((() => {
     return result
 })())
 
-function generateSpaceFromAH (a, h) {
+export function generateSpaceFromAH (a, h) {
     if (a < h || a < 0 || h < 0) {
         throw new Error()
     }
     return DOTS_TO_SPACE[11].str.repeat(a - h) + (DOTS_TO_SPACE[11].str + HALF_SPACE).repeat(h)
 }
 
-function adjustWithUnicode (adjuster) {
+export function adjustWithUnicode (adjuster) {
     if (adjuster >= 11) {
         throw new Error()
     }
