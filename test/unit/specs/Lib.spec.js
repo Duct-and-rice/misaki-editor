@@ -67,9 +67,10 @@ describe('widthSpace', function () {
         const ruler = new CanvasRuler()
         for (let i = 1; i < 100; i++) {
             const sp = widthSpace(i)
+            console.log(sp.replace(' ','H').replace('　','Z'))
             expect(ruler.getWidth(sp)).to.equal(i)
-            expect(sp.startsWidth(' ')).to.be.false
-            expect(sp).to.include('  ')
+            expect(sp.charAt(0)).not.to.equal(' ')
+            expect(sp).not.to.include('  ')
         }
     })
 })
