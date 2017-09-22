@@ -72,6 +72,12 @@ describe('widthSpace', function () {
             expect(sp).not.to.include('  ')
         }
     })
+    it('Adjust with Unicode', function () {
+        const ruler = new CanvasRuler()
+        for (let i = 0; i < 11; i++) {
+            expect(ruler.getWidth(adjustWithUnicode(11))).to.equal(i)
+        }
+    })
     describe('Error Check', function () {
         it('generateSpaceFromAH', function () {
             expect(() => generateSpaceFromAH(0, 1)).should.throw()
@@ -79,6 +85,9 @@ describe('widthSpace', function () {
         })
         it('adjustWithUnicode', function () {
             expect(() => adjustWithUnicode(50)).should.throw()
+        })
+        it('widthSpace', function () {
+            expect(() => widthSpace('a')).should.throw()
         })
     })
 })
