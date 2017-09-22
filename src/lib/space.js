@@ -25,14 +25,20 @@ const DOTS_TO_SPACE = Object.freeze((() => {
 
 export function generateSpaceFromAH (a, h) {
     if (a < h || a < 0 || h < 0) {
-        throw new Error()
+        throw new Error('a:' + a + ',h:' + h)
     }
     return DOTS_TO_SPACE[11].str.repeat(a - h) + (DOTS_TO_SPACE[11].str + HALF_SPACE).repeat(h)
 }
 
 export function adjustWithUnicode (adjuster) {
     if (adjuster >= 11) {
-        throw new Error()
+        throw new Error('Adjuster is ' + adjuster)
+    }
+    if (adjuster === 0) {
+        return ''
+    }
+    if (adjuster === 16) {
+        return DOTS_TO_SPACE[16]
     }
     let res = ''
     if (adjuster > 5) {
@@ -50,19 +56,69 @@ export default function widthSpace (sp) {
     const mod = sp % 11
     let a = 0
     let h = 0
-    if (mod === 0) {
-        a = sp / 11
-    } else {
-        a = (Math.floor(sp / 11) + 1)
-        console.log(a)
-        while (a * 11 + h * 5 !== sp) {
-            a -= 1
-            h += 2
-            if (a < h) {
-                const adjuster = sp - Math.floor(sp / 11) * 11
-                return DOTS_TO_SPACE[11].str.repeat(Math.floor(sp / 11)) + adjustWithUnicode(adjuster)
+    let gap = 0
+    let adjust = true
+    switch (mod) {
+    case 0:
+        a = Math.floor(sp / 11)
+        break
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+        a = Math.floor(sp / 11)
+        h = 1
+        gap = 5 - mod
+        break
+    case 5:
+        if (sp === 5) {
+            return DOTS_TO_SPACE[5].str
+        }
+        a = Math.floor(sp / 11)
+        h = 1
+        adjust = false
+        break
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+    case 10:
+        a = Math.floor(sp / 11)
+        gap = 11 - mod
+        break
+    }
+
+    if (mod !== 0 && mod !== 5 && a * 11 + h * 5 !== sp) {
+        if (mod <= 4) {
+            console.log(gap, a - gap, h + 2 * gap)
+            if (a - gap >= h + 2 * gap &&
+                gap >= 0 &&
+                a >= gap
+            ) {
+                a -= gap
+                h += 2 * gap
+                adjust = false
+            } else {
+                h = 0
+            }
+        } else {
+            console.log('a', gap, a, a - gap, h + 2 * gap)
+            if (a - gap >= h + 2 * gap &&
+                gap >= 0 &&
+                a >= gap
+            ) {
+                a -= gap
+                h += 2 * gap
+                if ((a + 1) * 11 + h * 5 === sp) {
+                    a++
+                }
+                adjust = false
             }
         }
     }
-    return generateSpaceFromAH(a, h)
+    if (a < h) {
+    }
+    console.log(a, h, sp, mod)
+
+    return generateSpaceFromAH(a, h) + adjustWithUnicode(adjust ? mod : 0)
 }
