@@ -12,6 +12,8 @@ export default {
 <style>
 #app {
     font-family: "Noto Sans Japanese", sans-serif;
+    height: 100%;
+    display: flex;
 }
 ::-webkit-scrollbar {
     width: 1px;

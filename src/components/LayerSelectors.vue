@@ -41,9 +41,7 @@ export default {
 
 <style scoped>
 .tab-group {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    position: relative;
     margin: 5px 10px;
     width: calc(100% - 20px - 3px);
     & .tab-item{

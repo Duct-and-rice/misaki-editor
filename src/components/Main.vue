@@ -5,21 +5,24 @@ ph-window.main
     ph-window-content
         ph-window
             ph-pane-group
-                ph-pane
+                ph-pane.flex
+                    aa-area(:value.sync='page')
+                    app-layer-selectors
                 ph-pane(:sidebar="true" size="sm")
-            app-layer-selectors
     app-footer
 </template>
 
 <script>
 import TabGroup from './TabGroup'
 import LayerSelectors from './LayerSelectors'
+import AAArea from './AAArea'
 import { mapState } from 'vuex'
 
 export default {
     name: 'main',
     data () {
         return {
+            page: ''
         }
     },
     created () {
@@ -34,10 +37,15 @@ export default {
     },
     components: {
         'app-tab-group': TabGroup,
-        'app-layer-selectors': LayerSelectors
+        'app-layer-selectors': LayerSelectors,
+        'aa-area': AAArea
     }
 }
 </script>
 
 <style scoped>
+.flex {
+    display: flex;
+    flex-direction: column;
+}
 </style>
