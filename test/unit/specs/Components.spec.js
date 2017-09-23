@@ -7,7 +7,6 @@ import TabGroup from '@/components/TabGroup'
 import AAArea from '@/components/AAArea'
 import store from '@/store'
 import VuePhotonkit from 'vue-photonkit'
-import LayerSelectors from '@/components/LayerSelectors'
 
 function getInstance (Component, propsData) {
     const Ctor = Vue.extend(Component)
@@ -53,12 +52,6 @@ describe('Components', function () {
     describe('TabGroup.vue', function () {
         it('data is a function', function () {
             expect(TabGroup.data).to.be.a('function')
-        })
-    })
-
-    describe('LayerSelectors.vue', function () {
-        it('data is a function', function () {
-            expect(LayerSelectors.data).to.be.a('function')
         })
     })
 

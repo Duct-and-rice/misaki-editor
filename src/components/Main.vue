@@ -18,7 +18,6 @@ ph-window.main
 
 <script>
 import TabGroup from './TabGroup'
-import LayerSelectors from './LayerSelectors'
 import AAArea from './AAArea'
 import { mapState } from 'vuex'
 
@@ -55,7 +54,6 @@ export default {
     },
     components: {
         'app-tab-group': TabGroup,
-        'app-layer-selectors': LayerSelectors,
         'aa-area': AAArea
     }
 }
