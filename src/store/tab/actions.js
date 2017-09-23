@@ -16,10 +16,15 @@ class Page {
 class Layer {
 }
 
-export function addNewTab ({commit}) {
-    commit(types.ADD_TAB, new Tab())
+export function add ({commit}) {
+    commit(types.ADD, new Tab())
 }
 
-export function selectTab ({commit}, index) {
-    commit(types.SELECT_TAB, index)
+export function select ({commit}, index) {
+    commit(types.SELECT, index)
+}
+
+export function close ({commit}, index) {
+    commit(types.SELECT, 0)
+    commit(types.CLOSE, index)
 }

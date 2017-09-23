@@ -1,7 +1,11 @@
 <template lang="pug">
 ph-window.main
     app-header
-    app-tab-group(:tabs="tabs" :current="currentTab" @update:current="updateCurrentTab" @addNewTab="$store.dispatch('tab/addNewTab')")
+    app-tab-group(:tabs="tabs"
+        :current.sync="currentTab"
+        @add="$store.dispatch('tab/add')"
+        @close="closeTab"
+        )
     ph-window-content
         ph-window
             ph-pane-group
@@ -27,18 +31,25 @@ export default {
     },
     created () {
         if (this.tabs.length <= 0) {
-            this.$store.dispatch('tab/addNewTab')
+            this.$store.dispatch('tab/add')
         }
     },
     computed: {
         ...mapState({
-            tabs: state => state.tab.tabs,
-            currentTab: state => state.tab.current
-        })
+            tabs: state => state.tab.tabs
+        }),
+        currentTab: {
+            get () {
+                return this.$store.state.tab.current
+            },
+            set (index) {
+                this.$store.dispatch('tab/select', index)
+            }
+        }
     },
     methods: {
-        updateCurrentTab (index) {
-            this.$store.dispatch('tab/selectTab', index)
+        closeTab (index) {
+            this.$store.dispatch('tab/close', index)
         }
     },
     components: {
@@ -50,6 +61,18 @@ export default {
 </script>
 
 <style scoped>
+@keyframes flexGrow {
+  to {
+    flex: 1;
+  }
+}
+
+@keyframes flexShrink {
+  to {
+    flex: .01;
+    flex: .00001;
+  }
+}
 .flex {
     display: flex;
     flex-direction: column;

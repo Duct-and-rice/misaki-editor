@@ -1,4 +1,5 @@
 export default {
-    'ADD_TAB': 'addTab',
-    'SELECT_TAB': 'selectTab'
+    'ADD': 'add',
+    'SELECT': 'select',
+    'CLOSE': 'close'
 }

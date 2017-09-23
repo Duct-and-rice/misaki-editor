@@ -3,11 +3,15 @@ import Vue from 'vue'
 import * as types from './mutation-types'
 
 export default {
-    addTab (state, tab) {
+    add (state, tab) {
         state.tabs.push(tab)
     },
 
-    selectTab (state, index) {
+    select (state, index) {
         state.current = index
+    },
+
+    close (state, index) {
+        state.tabs.splice(index, 1)
     }
 }

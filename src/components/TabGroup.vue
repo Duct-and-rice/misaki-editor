@@ -1,11 +1,13 @@
 <template lang="pug">
 .tab-group
-    ph-tab-item(v-for="(tab, index) in tabs" 
-        :key="tab.title"
-        :class="{active : index == current}"
-        @click.native="onClickTab(index)"
-        ) {{ tab.title }}
-    .tab-item.tab-item-fixed(@click="addNewTab")
+    transition-group.tabs(name="tab" tag="div")
+        ph-tab-item(v-for="(tab, index) in tabs" 
+            :key="tab.title"
+            :class="{active : index == current}"
+            @click.native="onClick(index)"
+            @cancel="onClickClose(index)"
+            ) {{ tab.title }}
+    .tab-item.tab-item-fixed(@click="addNew")
         ph-icon(icon="plus")
 </template>
 
@@ -27,17 +29,52 @@ export default {
         }
     },
     methods: {
-        onClickTab (tabIndex) {
-            console.log(tabIndex)
-            this.$emit('update:current', tabIndex)
+        onClick (index) {
+            this.$emit('update:current', index)
         },
-        addNewTab () {
-            this.$emit('addNewTab')
+        addNew () {
+            this.$emit('add')
+        },
+        onClickClose (index) {
+            this.$emit('close', index)
         }
     }
 }
 </script>
 
 <style scoped>
+.tab-transition {
+    
+}
+.tab-enter {
+    flex: 0;
+}
+.tab-enter-active {
+    animation: flexGrow .1s linear forwards;
+    white-space: nowrap;
+}
+.tab-leave {
+    flex: 0;
+}
+.tab-leave-active {
+    animation: flexShrink .1s linear forwards;
+    white-space: nowrap;
+}
+.tabs {
+    transition: all 1s linear forwards;
+    display: flex;
+    flex: 1;
+}
+@keyframes flexGrow {
+    to {
+        flex: 1;
+    }
+}
 
+@keyframes flexShrink {
+    to {
+        flex: 1;
+        flex: 0;
+    }
+}
 </style>
