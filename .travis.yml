@@ -13,6 +13,4 @@ before_install:
 
 dist: trusty
 sudo: false
-cache:
-    directories:
-        - node_modules
+cache: yarn
