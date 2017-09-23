@@ -90,6 +90,9 @@ describe('widthSpace', function () {
         const ruler = new CanvasRuler()
         expect(ruler.getWidth(adjustWithUnicode(1))).to.equal(1)
     })
+    it('generateSpaceFromAH returns half space', function () {
+        expect(() => generateSpaceFromAH(0, 1)).to.equal(' ')
+    })
     describe('Error Check', function () {
         it('generateSpaceFromAH', function () {
             expect(() => generateSpaceFromAH(-1, -1)).to.throw()
