@@ -65,6 +65,29 @@ describe('Components', function () {
         it('data is a function', function () {
             expect(TabGroup.data).to.be.a('function')
         })
+        it('click', function (done) {
+            const vm = getInstance(TabGroup, {tabs: [{title: ''}, {title: ''}]})
+            vm.$on('update:current', value => {
+                expect(value).to.equal(1)
+                done()
+            })
+            vm.onClick(1)
+        })
+        it('add', function (done) {
+            const vm = getInstance(TabGroup, {tabs: [{title: ''}, {title: ''}]})
+            vm.$on('add', () => {
+                done()
+            })
+            vm.addNew()
+        })
+        it('close', function (done) {
+            const vm = getInstance(TabGroup, {tabs: [{title: ''}, {title: ''}]})
+            vm.$on('close', value => {
+                expect(value).to.equal(1)
+                done()
+            })
+            vm.onClickClose(1)
+        })
     })
 
     describe('AAArea.vue', function () {
