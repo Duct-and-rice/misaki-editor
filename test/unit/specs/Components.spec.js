@@ -30,6 +30,18 @@ describe('Components', function () {
             expect(vm.$el.querySelector('h1.title').textContent)
                 .to.equal('Misaki Editor')
         })
+        it('currentTab', function () {
+            const vm = getInstance(Main)
+            vm.currentTab = 2
+            expect(vm.$store.state.tab.current).to.equal(2)
+        })
+        it('closeTab', function () {
+            const vm = getInstance(Main)
+            vm.$store.dispatch('tab/add')
+            vm.$store.dispatch('tab/add')
+            vm.closeTab(2)
+            expect(vm.$store.state.tab.tabs.length).to.equal(2)
+        })
     })
 
     describe('Header.vue', function () {
