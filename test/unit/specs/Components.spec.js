@@ -4,18 +4,14 @@ import Main from '@/components/Main'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import TabGroup from '@/components/TabGroup'
+import AAArea from '@/components/AAArea'
 import store from '@/store'
 import VuePhotonkit from 'vue-photonkit'
 import LayerSelectors from '@/components/LayerSelectors'
 
 function getInstance (Component, propsData) {
-    const vm = new Vue({
-        template: '<test></test>',
-        store,
-        components: {
-            'test': Component
-        }
-    }).$mount()
+    const Ctor = Vue.extend(Component)
+    const vm = new Ctor({propsData, store}).$mount()
     return vm
 }
 
@@ -59,9 +55,22 @@ describe('Components', function () {
             expect(TabGroup.data).to.be.a('function')
         })
     })
+
     describe('LayerSelectors.vue', function () {
         it('data is a function', function () {
             expect(LayerSelectors.data).to.be.a('function')
+        })
+    })
+
+    describe('AAArea.vue', function () {
+        it('update', function (done) {
+            let page = 'a'
+            const vm = getInstance(AAArea, {'value': page})
+            vm.$on('update:value', value => {
+                expect(value).to.equal(page)
+                done()
+            })
+            vm.$el.dispatchEvent(new Event('input'))
         })
     })
 })

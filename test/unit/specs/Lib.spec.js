@@ -79,14 +79,12 @@ describe('widthSpace', function () {
     })
     it('Spaces', function () {
         const ruler = new CanvasRuler()
-        const start = new Date()
         for (let i = 1; i < 1000; i++) {
             const sp = widthSpace(i)
             expect(ruler.getWidth(sp)).to.equal(i)
             expect(sp.charAt(0)).not.to.equal(' ')
             expect(sp).not.to.include('  ')
         }
-        console.log(new Date().getMilliseconds() - start.getMilliseconds())
     })
     it('Adjust with Unicode', function () {
         const ruler = new CanvasRuler()
