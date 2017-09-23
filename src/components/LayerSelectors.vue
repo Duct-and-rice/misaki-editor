@@ -11,28 +11,6 @@ export default {
     data () {
         return {
             layers: [
-                {title: 'a', active: true},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'},
-                {title: 'a'}
             ]
         }
     }

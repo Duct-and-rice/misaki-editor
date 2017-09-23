@@ -4,6 +4,6 @@ import * as types from './mutation-types'
 
 export default {
     addTab (state, tab) {
-        state.tab.tabs.push(tab)
+        state.tabs.push(tab)
     }
 }

@@ -1,6 +1,6 @@
-import mutations from '../../../src/store/mutations'
-import * as actions from '../../../src/store/actions'
-import types from '../../../src/store/mutation-types'
+import mutations from '../../../src/store/tab/mutations'
+import * as actions from '../../../src/store/tab/actions'
+import types from '../../../src/store/tab/mutation-types'
 
 describe('Store', function () {
     describe('Mutations', function () {

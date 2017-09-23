@@ -3,19 +3,17 @@ import Vuex from 'vuex'
 import * as getters from './getters'
 import * as actions from './actions'
 import mutations from './mutations'
-import tab from './tab/'
 
 Vue.use(Vuex)
 
 const state = {
+    tabs: [],
+    currentTab: 0
 }
 
-export default new Vuex.Store({
+export default {
     state,
     getters,
     actions,
-    mutations,
-    modules: {
-        tab
-    }
-})
+    mutations
+}
