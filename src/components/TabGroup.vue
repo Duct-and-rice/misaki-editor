@@ -43,8 +43,17 @@ export default {
 </script>
 
 <style scoped>
-.tab-transition {
-    
+@keyframes flexGrow {
+    to {
+        flex: 1;
+    }
+}
+
+@keyframes flexShrink {
+    to {
+        flex: 1;
+        flex: 0;
+    }
 }
 .tab-enter {
     flex: 0;
@@ -65,16 +74,21 @@ export default {
     display: flex;
     flex: 1;
 }
-@keyframes flexGrow {
-    to {
-        flex: 1;
+.tab-group {
+    position: relative;
+    & .tab-item{
+        &:not(.tab-item-fixed) {
+            min-width: 100px;
+        }
+        &:first-child {
+            border-left: 1px solid #989698;
+        }
+        &:last-child {
+            border-right: 1px solid #989698;
+        }
     }
-}
 
-@keyframes flexShrink {
-    to {
-        flex: 1;
-        flex: 0;
-    }
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 </style>

@@ -11,7 +11,7 @@ ph-window.main
             ph-pane-group
                 ph-pane.flex
                     aa-area(:value.sync="page")
-                    app-layer-selectors
+                    app-tab-group.layers(:tabs="layers")
                 ph-pane(:sidebar="true" size="sm")
     app-footer
 </template>
@@ -26,7 +26,8 @@ export default {
     name: 'main',
     data () {
         return {
-            page: ''
+            page: '',
+            layers: [{title: 'tab'}]
         }
     },
     created () {
@@ -61,20 +62,13 @@ export default {
 </script>
 
 <style scoped>
-@keyframes flexGrow {
-  to {
-    flex: 1;
-  }
-}
-
-@keyframes flexShrink {
-  to {
-    flex: .01;
-    flex: .00001;
-  }
-}
 .flex {
     display: flex;
     flex-direction: column;
+}
+.layers {
+    margin: 5px 10px;
+    width: calc(100% - 20px - 3px);
+    border-bottom: none;
 }
 </style>

@@ -21,10 +21,9 @@ export default {
 }
 ::-webkit-scrollbar-track {
     border-radius: 1px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, .1);
 }
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 50, .5);
+    background-color: rgba(0, 0, 0, .5);
     border-radius: 1px;
     box-shadow:0 0 0 1px rgba(255, 255, 255, .3);
 }
