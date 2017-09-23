@@ -1,12 +1,12 @@
 <template lang="pug">
 ph-window.main
     app-header
-    app-tab-group(:tabs="tabs")
+    app-tab-group(:tabs="tabs" :current="currentTab" @update:current="updateCurrentTab" @addNewTab="$store.dispatch('tab/addNewTab')")
     ph-window-content
         ph-window
             ph-pane-group
                 ph-pane.flex
-                    aa-area(:value.sync='page')
+                    aa-area(:value.sync="page")
                     app-layer-selectors
                 ph-pane(:sidebar="true" size="sm")
     app-footer
@@ -27,13 +27,19 @@ export default {
     },
     created () {
         if (this.tabs.length <= 0) {
-            this.$store.dispatch('addNewTab')
+            this.$store.dispatch('tab/addNewTab')
         }
     },
     computed: {
         ...mapState({
-            tabs: 'tabs'
+            tabs: state => state.tab.tabs,
+            currentTab: state => state.tab.current
         })
+    },
+    methods: {
+        updateCurrentTab (index) {
+            this.$store.dispatch('tab/selectTab', index)
+        }
     },
     components: {
         'app-tab-group': TabGroup,

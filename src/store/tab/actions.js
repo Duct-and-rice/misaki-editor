@@ -15,7 +15,11 @@ class Page {
 
 class Layer {
 }
+
 export function addNewTab ({commit}) {
     commit(types.ADD_TAB, new Tab())
 }
 
+export function selectTab ({commit}, index) {
+    commit(types.SELECT_TAB, index)
+}

@@ -8,10 +8,11 @@ Vue.use(Vuex)
 
 const state = {
     tabs: [],
-    currentTab: 0
+    current: 0
 }
 
 export default {
+    namespaced: true,
     state,
     getters,
     actions,

@@ -3,7 +3,4 @@ import Vue from 'vue'
 import * as types from './mutation-types'
 
 export default {
-    addTab (state, tab) {
-        state.tab.tabs.push(tab)
-    }
 }
