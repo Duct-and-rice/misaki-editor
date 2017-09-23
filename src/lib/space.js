@@ -60,8 +60,6 @@ export function oneDotReduce (ah) {
             return {a: ah.a, h: ah.h - 1, adj: ah.adj + 4}
         } else if (ah.a >= 1 && ah.adj < 6) {
             return {a: ah.a - 1, h: ah.h + 1, adj: ah.adj + 5}
-        } else {
-            return null
         }
     })()
     // console.log(ah)
