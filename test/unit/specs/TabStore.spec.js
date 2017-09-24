@@ -4,51 +4,51 @@ import types from '../../../src/store/tab/mutation-types'
 
 describe('Store', function () {
     describe('Mutations', function () {
-        it('add', function () {
+        it('addTab', function () {
             const store = {tabs: []}
-            mutations.add(store, {title: 'test'})
+            mutations.addTab(store, {tab: {title: 'test'}})
             expect(store.tabs[0]).to.have.property('title', 'test')
         })
 
-        it('select', function () {
+        it('selectTab', function () {
             const store = {tabs: []}
-            mutations.select(store, 0)
-            expect(store.current).to.equal(0)
+            mutations.selectTab(store, {tabIndex: 0})
+            expect(store.currentIndex).to.equal(0)
         })
 
-        it('select', function () {
+        it('selectTab', function () {
             const store = {tabs: []}
-            mutations.add(store, {title: 'test'})
-            mutations.select(store, 0)
+            mutations.addTab(store, {tab: {title: 'test'}})
+            mutations.selectTab(store, {tabIndex: 0})
             expect(store.tabs.length).to.equal(1)
         })
     })
     describe('Actions', function () {
-        it('add', function (done) {
-            const commit = (type, newTab) => {
-                expect(type).to.equal(types.ADD)
+        it('addTab', function (done) {
+            const commit = (type, {tab: newTab}) => {
+                expect(type).to.equal(types.ADD_TAB)
                 expect(newTab).to.have.property('title', 'New Tab')
                 done()
             }
-            actions.add({commit})
+            actions.addTab({commit})
         })
 
         it('select', function (done) {
-            const commit = (type, index) => {
-                expect(type).to.equal(types.SELECT)
-                expect(index).to.equal(0)
+            const commit = (type, {tabIndex}) => {
+                expect(type).to.equal(types.SELECT_TAB)
+                expect(tabIndex).to.equal(0)
                 done()
             }
-            actions.select({commit}, 0)
+            actions.selectTab({commit}, {tabIndex: 0})
         })
 
         it('close', function (done) {
-            const commit = (type, index) => {
-                expect(type).to.satisfy(type => type === types.CLOSE || type === types.SELECT)
-                expect(index).to.equal(0)
+            const commit = (type, {tabIndex}) => {
+                expect(type).to.satisfy(type => type === types.CLOSE_TAB || type === types.SELECT_TAB)
+                expect(tabIndex).to.equal(0)
                 done()
             }
-            actions.close({commit}, 0)
+            actions.closeTab({commit}, {tabIndex: 0})
         })
     })
 })

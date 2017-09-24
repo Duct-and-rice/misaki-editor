@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 const state = {
     tabs: [],
-    current: 0
+    currentIndex: 0
 }
 
 export default {

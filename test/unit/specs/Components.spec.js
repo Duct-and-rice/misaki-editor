@@ -32,14 +32,14 @@ describe('Components', function () {
         })
         it('currentTab', function () {
             const vm = getInstance(Main)
-            vm.currentTab = 2
-            expect(vm.$store.state.tab.current).to.equal(2)
+            vm.currentTabIndex = 2
+            expect(vm.$store.state.tab.currentIndex).to.equal(2)
         })
         it('closeTab', function () {
             const vm = getInstance(Main)
-            vm.$store.dispatch('tab/add')
-            vm.$store.dispatch('tab/add')
-            vm.closeTab(2)
+            vm.$store.dispatch('tab/addTab')
+            vm.$store.dispatch('tab/addTab')
+            vm.closeTab({tabIndex: 2})
             expect(vm.$store.state.tab.tabs.length).to.equal(2)
         })
     })
