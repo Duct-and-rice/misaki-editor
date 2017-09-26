@@ -8,7 +8,6 @@ export default {
     },
 
     selectTab (state, {tabIndex}) {
-        console.log(tabIndex)
         state.currentIndex = tabIndex
     },
 

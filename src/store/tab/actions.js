@@ -29,8 +29,9 @@ class Tab extends Structure {
 }
 
 class Page extends Structure {
-    constructor () {
+    constructor (title) {
         super()
+        this.title = title || 'Page'
         this.children = [new Layer()]
         this.currentIndex = 0
     }
@@ -38,7 +39,7 @@ class Page extends Structure {
 
 class Layer {
     constructor () {
-        this.title = 'layer'
+        this.title = 'Layer'
         this.text = ''
     }
 }
@@ -57,7 +58,7 @@ export function closeTab ({commit, getters}, {tabIndex}) {
     commit(types.CLOSE_TAB, {tabIndex})
 }
 
-export function addPage ({commit}, tabIndex) {
+export function addPage ({commit}, {tabIndex}) {
     commit(types.ADD_PAGE, {tabIndex, page: new Page()})
 }
 

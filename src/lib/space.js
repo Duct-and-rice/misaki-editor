@@ -51,7 +51,6 @@ export function adjustWithUnicode (adjuster) {
 
 export function oneDotReduce (ah) {
     ah = (() => {
-        // console.log(ah)
         if (ah.a - 1 >= ah.h + 2) {
             return {a: ah.a - 1, h: ah.h + 2, adj: ah.adj}
         } else if (ah.adj >= 1) {
@@ -62,7 +61,6 @@ export function oneDotReduce (ah) {
             return {a: ah.a - 1, h: ah.h + 1, adj: ah.adj + 5}
         }
     })()
-    // console.log(ah)
     if (ah.h >= 1 && ah.adj <= 6) {
         ah.h--
         ah.adj += 5
@@ -123,7 +121,6 @@ export default function widthSpace (sp) {
 
     if (mod !== 0 && mod !== 5) {
         while (a * 11 + h * 5 + adj !== sp) {
-            // console.log(a, h, adj, a * 11 + h * 5 + adj)
             const ah = (oneDotReduce({a, h, adj}))
             a = ah.a
             h = ah.h

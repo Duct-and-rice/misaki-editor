@@ -1,6 +1,6 @@
 <template lang="pug">
 .tab-group
-    transition-group.tabs(name="tab" tag="div")
+    transition-group.tabs(name="tab" tag="div" :class="{column : column}")
         ph-tab-item(v-for="(tab, index) in tabs" 
             :key="tab.title"
             :class="{active : index == current}"
@@ -26,6 +26,10 @@ export default {
         current: {
             type: Number,
             default: 0
+        },
+        column: {
+            type: Boolean,
+            default: false
         }
     },
     methods: {
@@ -90,5 +94,8 @@ export default {
 
     overflow-x: scroll;
     overflow-y: hidden;
+}
+.column {
+    flex-direction: column;
 }
 </style>

@@ -16,6 +16,11 @@ ph-window.main
                         @add="addAtCurrentPage"
                         )
                 ph-pane(:sidebar="true" size="sm")
+                    app-tab-group.pages(:tabs="pages"
+                       :current.sync="currentPageIndex"
+                       :column="true"
+                       @add="addAtCurrentTab"
+                       )
     app-footer
 </template>
 
@@ -61,17 +66,20 @@ export default {
                 this.$store.dispatch('tab/selectTab', {tabIndex})
             }
         },
-        currentPageIndex: {
-            get () {
-                return this.currentIndexes.pageIndex
-            }
-        },
         currentLayerIndex: {
             get () {
                 return this.currentIndexes.layerIndex
             },
             set (layerIndex) {
                 this.$store.dispatch('tab/selectLayer', { ...this.currentIndexes, layerIndex })
+            }
+        },
+        currentPageIndex: {
+            get () {
+                return this.currentIndexes.pageIndex
+            },
+            set (pageIndex) {
+                this.$store.dispatch('tab/selectPage', {...this.currentIndexes, pageIndex})
             }
         },
 
@@ -92,7 +100,11 @@ export default {
         },
         addAtCurrentPage () {
             this.$store.dispatch('tab/addLayer',
-                {tabIndex: this.currentTabIndex, pageIndex: this.currentPageIndex})
+                this.currentIndexes)
+        },
+        addAtCurrentTab () {
+            this.$store.dispatch('tab/addPage',
+                this.currentIndexes)
         },
         closeLayer (index) {
             this.$store.dispatch('tab/closeLayer',
@@ -115,5 +127,10 @@ export default {
     margin: 5px 10px;
     width: calc(100% - 20px - 3px);
     border-bottom: none;
+}
+.pages {
+    & .tabs {
+        flex-direction: column
+    }
 }
 </style>

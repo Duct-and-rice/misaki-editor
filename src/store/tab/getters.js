@@ -3,7 +3,6 @@ export function currentTabIndex (state) {
 }
 
 export function currentTab (state, getters) {
-    console.log(getters.currentTabIndex, state.tabs)
     return state.tabs[getters.currentTabIndex]
 }
 
@@ -12,7 +11,6 @@ export function tabsLength (state) {
 }
 
 export function currentPageIndex (state, getters) {
-    console.log(getters.currentTab)
     return getters.currentTab.currentIndex
 }
 
