@@ -35,14 +35,14 @@ describe('Components', function () {
             expect(vm.$el.querySelector('h1.title').textContent)
                 .to.equal('Misaki Editor')
         })
-        it('currentTab', function () {
+        it('current tab', function () {
             const vm = getInstance(Main)
             vm.$store.dispatch('tab/addTab')
             vm.$store.dispatch('tab/addTab')
             vm.currentTabIndex = 1
             expect(vm.$store.state.tab.currentIndex).to.equal(1)
         })
-        it('closeTab', function () {
+        it('close tab', function () {
             const vm = getInstance(Main)
             vm.$store.state.tab.tabs.length = 1
             vm.$store.dispatch('tab/addTab')
