@@ -17,6 +17,10 @@ class Structure {
         this.children.splice(index, 1)
     }
 
+    get size () {
+        return this.children.length
+    }
+
 }
 
 class Tab extends Structure {
