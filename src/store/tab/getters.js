@@ -15,7 +15,7 @@ export function currentPageIndex (state, getters) {
 }
 
 export function currentPage (state, getters) {
-    return getters.currentTab.children[getters.currentPageIndex]
+    return getters.currentTab.current
 }
 
 export function currentLayerIndex (state, getters) {
@@ -23,7 +23,7 @@ export function currentLayerIndex (state, getters) {
 }
 
 export function currentLayer (state, getters) {
-    return getters.currentPage.children[getters.currentLayerIndex]
+    return getters.currentPage.current
 }
 
 export function currentIndexes (state, getters) {

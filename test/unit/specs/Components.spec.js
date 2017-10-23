@@ -42,6 +42,13 @@ describe('Components', function () {
             vm.closeTab({tabIndex: 2})
             expect(vm.$store.state.tab.tabs.length).to.equal(2)
         })
+        it('close page', function () {
+            const vm = getInstance(Main)
+            vm.addAtCurrentTab()
+            vm.addAtCurrentTab()
+            vm.closePage({tabIndex: 0, pageIndex: 2})
+            expect(vm.currentTab.size).to.equal(2)
+        })
         it('set text', function () {
             const vm = getInstance(Main)
             vm.text = 'x'
@@ -63,8 +70,8 @@ describe('Components', function () {
             const vm = getInstance(Main)
             vm.addAtCurrentPage()
             vm.addAtCurrentPage()
-            vm.closeLayer(1)
-            expect(vm.currentTab.size).to.equal(2)
+            vm.closeLayer({tabIndex: 0, pageIndex: 0, layerIndex: 1})
+            expect(vm.currentPage.size).to.equal(2)
         })
     })
 

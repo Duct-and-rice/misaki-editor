@@ -98,6 +98,9 @@ export default {
         closeTab (index) {
             this.$store.dispatch('tab/closeTab', index)
         },
+        closePage (index) {
+            this.$store.dispatch('tab/closePage', index)
+        },
         addAtCurrentPage () {
             this.$store.dispatch('tab/addLayer',
                 this.currentIndexes)
