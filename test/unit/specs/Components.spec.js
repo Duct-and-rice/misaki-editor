@@ -42,6 +42,30 @@ describe('Components', function () {
             vm.closeTab({tabIndex: 2})
             expect(vm.$store.state.tab.tabs.length).to.equal(2)
         })
+        it('set text', function () {
+            const vm = getInstance(Main)
+            vm.text = 'x'
+            expect(vm.currentLayer.text).to.equal('x')
+        })
+        it('select layer', function () {
+            const vm = getInstance(Main)
+            vm.addAtCurrentPage()
+            vm.currentLayerIndex = 1
+            expect(vm.currentPage.currentIndex).to.equal(1)
+        })
+        it('select page', function () {
+            const vm = getInstance(Main)
+            vm.addAtCurrentTab()
+            vm.currentPageIndex = 1
+            expect(vm.currentTab.currentIndex).to.equal(1)
+        })
+        it('close layer', function () {
+            const vm = getInstance(Main)
+            vm.addAtCurrentPage()
+            vm.addAtCurrentPage()
+            vm.closeLayer(1)
+            expect(vm.currentTab.size).to.equal(2)
+        })
     })
 
     describe('Header.vue', function () {
