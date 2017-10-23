@@ -6,7 +6,7 @@ export function currentTab (state, getters) {
     return state.tabs[getters.currentTabIndex]
 }
 
-export function tabsLength (state) {
+export function size (state) {
     return state.tabs.length
 }
 

@@ -50,7 +50,7 @@ class Layer {
 
 export function addTab ({commit, getters}) {
     commit(types.ADD_TAB, {tab: new Tab()})
-    commit(types.SELECT_TAB, {tabIndex: getters.tabsLength - 1})
+    commit(types.SELECT_TAB, {tabIndex: getters.size - 1})
 }
 
 export function selectTab ({commit}, {tabIndex}) {

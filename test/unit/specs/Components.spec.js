@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Main from '@/components/Main'
@@ -14,12 +15,16 @@ function getInstance (Component, propsData) {
     return vm
 }
 
+const baseState = Object.freeze(_.cloneDeep(store.state))
+
 describe('Components', function () {
     before(function () {
         Vue.use(Vuex)
         Vue.use(VuePhotonkit)
         Vue.component('app-header', Header)
         Vue.component('app-footer', Footer)
+        store.replaceState(null)
+        store.replaceState(baseState)
     })
     describe('Main.vue', function () {
         it('data is a function', function () {
@@ -32,14 +37,17 @@ describe('Components', function () {
         })
         it('currentTab', function () {
             const vm = getInstance(Main)
-            vm.currentTabIndex = 2
-            expect(vm.$store.state.tab.currentIndex).to.equal(2)
+            vm.$store.dispatch('tab/addTab')
+            vm.$store.dispatch('tab/addTab')
+            vm.currentTabIndex = 1
+            expect(vm.$store.state.tab.currentIndex).to.equal(1)
         })
         it('closeTab', function () {
             const vm = getInstance(Main)
+            vm.$store.state.tab.tabs.length = 1
             vm.$store.dispatch('tab/addTab')
             vm.$store.dispatch('tab/addTab')
-            vm.closeTab({tabIndex: 2})
+            vm.closeTab({tabIndex: 1})
             expect(vm.$store.state.tab.tabs.length).to.equal(2)
         })
         it('close page', function () {
@@ -68,6 +76,7 @@ describe('Components', function () {
         })
         it('close layer', function () {
             const vm = getInstance(Main)
+            vm.currentPage.children.length = 1
             vm.addAtCurrentPage()
             vm.addAtCurrentPage()
             vm.closeLayer({tabIndex: 0, pageIndex: 0, layerIndex: 1})
