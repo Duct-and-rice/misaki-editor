@@ -1,7 +1,7 @@
 [![Travis](https://img.shields.io/travis/Duct-and-rice/misaki-editor.svg)](https://travis-ci.org/Duct-and-rice/misaki-editor)
 [![Coveralls](https://img.shields.io/coveralls/Duct-and-rice/misaki-editor.svg)](https://coveralls.io/github/Duct-and-rice/misaki-editor)
-[![David](https://img.shields.io/david/Duct-and-rice/misaki-editor.svg)]()
-[![David-Dev](https://img.shields.io/david/dev/Duct-and-rice/misaki-editor.svg)]()
+[![David](https://img.shields.io/david/Duct-and-rice/misaki-editor.svg)](https://david-dm.org/Duct-and-rice/misaki-editor)
+[![David-Dev](https://img.shields.io/david/dev/Duct-and-rice/misaki-editor.svg)](https://david-dm.org/Duct-and-rice/misaki-editor?type=dev)
 
 # Misaki Editor
 JavaScriptで書いた(く)、Webアプリの形式を取ったやる夫スレエディタです。
