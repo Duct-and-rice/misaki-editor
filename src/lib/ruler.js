@@ -29,7 +29,6 @@ export class DOMRuler {
         this.ruler.textContent = '.' + str + '.'
         const width = this.ruler.offsetWidth
         this.isLock = false
-        this.ruler.style.fontFamily
         return width - 6
     }
 }

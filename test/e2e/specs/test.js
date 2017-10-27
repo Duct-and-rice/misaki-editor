@@ -9,9 +9,9 @@ module.exports = {
         const devServer = browser.globals.devServerURL
 
         browser
-      .url(devServer)
-      .waitForElementVisible('#app', 5000)
-      .assert.elementPresent('.main')
-      .end()
+            .url(devServer)
+            .waitForElementVisible('#app', 5000)
+            .assert.elementPresent('.main')
+            .end()
     }
 }

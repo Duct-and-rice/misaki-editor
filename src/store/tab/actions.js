@@ -20,7 +20,6 @@ class Structure {
     get size () {
         return this.children.length
     }
-
 }
 
 class Tab extends Structure {

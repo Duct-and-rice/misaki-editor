@@ -7,13 +7,14 @@
   "scripts": {
     "dev": "run-p dev:*",
     "dev:server": "node build/dev-server.js",
-    "dev:fix": "npm run lint -- --fix --watch",
+    "dev:fix": "npm run fix -- --watch",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "lint": "esw --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "lint": "esw --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "fix": "npm run lint -- --fix"
   },
   "dependencies": {
     "vue": "^2.4.2",
