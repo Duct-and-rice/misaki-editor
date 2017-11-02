@@ -8,7 +8,7 @@ export const SPACES = Object.freeze([
     {dots: 8, str: '\u2002', name: 'EN SPACE', unicode: true},
     {dots: 10, str: '\u2007', name: 'FIGURE SPACE', unicode: true},
     {dots: 11, str: '\u3000', name: 'IDEOGRAPHIC SPACE', unicode: false},
-    {dots: 16, str: '\u2003', name: 'EN SPACE', unicode: true}
+    {dots: 16, str: '\u2003', name: 'EM SPACE', unicode: true}
 ])
 const HALF_SPACE = '\u0020'
 
@@ -30,7 +30,8 @@ export function generateSpaceFromAH (a, h) {
     if (a < h || a < 0 || h < 0) {
         throw new Error('a:' + a + ',h:' + h)
     }
-    return DOTS_TO_SPACE[11].str.repeat(a - h) + (DOTS_TO_SPACE[11].str + HALF_SPACE).repeat(h)
+    return DOTS_TO_SPACE[11].str.repeat(a - h) +
+        (DOTS_TO_SPACE[11].str + HALF_SPACE).repeat(h)
 }
 
 export function adjustWithUnicode (adjuster) {
