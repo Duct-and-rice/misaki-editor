@@ -1,10 +1,12 @@
 <template lang="pug">
 .tab-group(:class="{column : column}")
-    pages-control(v-if="column")
-    transition-group.tabs(name="tab" tag="div" :class="{column : column}")
-        ph-tab-item(v-for="(tab, index) in tabs" 
+    pages-control(v-if="column" @add="addNew")
+    transition-group.tabs(name="tab" tag="div" 
+        :class="{column : column}" 
+        )
+        ph-tab-item(v-for="(tab, index) in tabs"
             :key="tab.title"
-            :class="{active : index == current}"
+            :class="{active : index == current, 'transparent-tabs' : transparentTabs}"
             @click.native="onClick(index)"
             @cancel="onClickClose(index)"
             ) {{ tab.title }}
@@ -30,6 +32,10 @@ export default {
             default: 0
         },
         column: {
+            type: Boolean,
+            default: false
+        },
+        transparentTabs: {
             type: Boolean,
             default: false
         }
@@ -91,19 +97,35 @@ export default {
         &:not(.tab-item-fixed) {
             min-width: 100px;
         }
-        /*&:first-child {
-            border-left: 1px solid var(--border-color);
+        &.transparent-tabs{
+            &.active {
+                background-color:transparent;
+                background-image:none;
+            }
+            
         }
-        &:last-child {
-            border-right: 1px solid var(--border-color);
-        }*/
         border-width: 0px;
     }
 
+    /*background-image:linear-gradient(#b8b6b8, #b0aeb0);*/
+
     border-bottom-width: 0px;
+    border-top-width: 0px;
 
     overflow-x: scroll;
     overflow-y: hidden;
+
+    &.column {
+        background-image:linear-gradient(#b8b6b8, #b0aeb0);
+        overflow-y: scroll;
+        overflow-x: hidden;
+        & .tab-item{
+            &:not(.active){
+                background-color:transparent;
+                background-image:none;
+            }
+        }
+    }
 }
 .column {
     flex-direction: column;

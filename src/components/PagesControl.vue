@@ -1,7 +1,7 @@
 <template lang="pug">
 .toolbar
     ph-button-group
-        ph-button(size="mini" @click="addNew") 
+        ph-button(size="mini" @click.native="addNew")
             ph-icon(icon="plus")
         ph-button(size="mini") +*
 </template>
@@ -17,6 +17,7 @@ export default {
     },
     methods: {
         addNew () {
+            console.log('add')
             this.$emit('add')
         }
     }
@@ -27,7 +28,7 @@ export default {
 @import '../styles/variables.css';
 
 .toolbar {
-    border-bottom: 1px solid var(--toolbar-border-color);
+    /*border-bottom: 1px solid var(--toolbar-border-color);*/
 }
 
 .btn-group {

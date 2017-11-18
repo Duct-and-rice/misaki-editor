@@ -1,11 +1,6 @@
 <template lang="pug">
 ph-window.main
     app-header
-    app-tab-group(:tabs="tabs"
-        :current.sync="currentTabIndex"
-        @add="$store.dispatch('tab/addTab')"
-        @close="closeTab"
-        )
     ph-window-content
         ph-window
             ph-pane-group
@@ -25,8 +20,8 @@ ph-window.main
 </template>
 
 <script>
-import TabGroup from './TabGroup'
 import AAArea from './AAArea'
+import TabGroup from './TabGroup'
 import { mapState, mapGetters } from 'vuex'
 
 export default {
@@ -115,8 +110,8 @@ export default {
         }
     },
     components: {
-        'app-tab-group': TabGroup,
-        'aa-area': AAArea
+        'aa-area': AAArea,
+        'app-tab-group': TabGroup
     }
 }
 </script>
