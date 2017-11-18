@@ -1,5 +1,6 @@
 <template lang="pug">
-.tab-group
+.tab-group(:class="{column : column}")
+    pages-control(v-if="column")
     transition-group.tabs(name="tab" tag="div" :class="{column : column}")
         ph-tab-item(v-for="(tab, index) in tabs" 
             :key="tab.title"
@@ -7,11 +8,12 @@
             @click.native="onClick(index)"
             @cancel="onClickClose(index)"
             ) {{ tab.title }}
-    .tab-item.tab-item-fixed(@click="addNew")
+    .tab-item.tab-item-fixed(@click="addNew" v-if="!column")
         ph-icon(icon="plus")
 </template>
 
 <script>
+import PagesControl from './PagesControl.vue'
 export default {
     name: 'tab-group',
     data () {
@@ -42,11 +44,16 @@ export default {
         onClickClose (index) {
             this.$emit('close', index)
         }
+    },
+    components: {
+        'pages-control': PagesControl
     }
 }
 </script>
 
 <style scoped>
+@import '../styles/variables.css';
+
 @keyframes flexGrow {
     to {
         flex: 1;
@@ -80,17 +87,20 @@ export default {
 }
 .tab-group {
     position: relative;
-    & .tab-item{
+    & .tab-item {
         &:not(.tab-item-fixed) {
             min-width: 100px;
         }
-        &:first-child {
-            border-left: 1px solid #989698;
+        /*&:first-child {
+            border-left: 1px solid var(--border-color);
         }
         &:last-child {
-            border-right: 1px solid #989698;
-        }
+            border-right: 1px solid var(--border-color);
+        }*/
+        border-width: 0px;
     }
+
+    border-bottom-width: 0px;
 
     overflow-x: scroll;
     overflow-y: hidden;
