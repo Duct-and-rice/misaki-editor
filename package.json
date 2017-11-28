@@ -17,6 +17,7 @@
     "fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "cpp-wasm-loader": "^0.1.2",
     "vue": "^2.4.2",
     "vue-router": "^3.0.1"
   },

@@ -73,7 +73,20 @@ module.exports = {
                     limit: 10000,
                     name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
                 }
+            },
+            {
+                test: /\.(c|cpp)$/,
+                use: {
+                    loader: 'cpp-wasm-loader',
+                    options: {
+                        buildPath: 'dist',
+                        emccFlags: ['-O3']
+                    }
+                }
             }
         ]
+    },
+    externals: {
+        'fs': true
     }
 }
