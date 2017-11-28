@@ -1,6 +1,8 @@
 import {CanvasRuler} from '@/lib/ruler'
 import {generateSpaceFromAH, adjustWithUnicode, default as widthSpace} from '@/lib/space'
+import {SPACES} from '@/lib/space.js'
 import wasm from '@/lib/space.c'
+
 describe('Space', function () {
     it('Ideographic Space', function () {
         expect(widthSpace(11)).to.equal('　')
@@ -30,13 +32,6 @@ describe('Space', function () {
         })
         it('widthSpace', function () {
             expect(() => widthSpace('a')).to.throw()
-        })
-    })
-    describe('Wasm', function (done) {
-        wasm.initialize().then(module => {
-            const result = module._roll_dice()
-            console.log(result)
-            done()
         })
     })
 })

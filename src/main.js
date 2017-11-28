@@ -6,11 +6,12 @@ import store from './store'
 import App from './App'
 import Header from './components/Header'
 import Footer from './components/Footer'
-// import * as ruler from './lib/ruler'
 import router from './router'
 import VuePhotonkit from 'vue-photonkit'
 import 'photon/dist/css/photon.css'
 import './assets/fonts.css'
+import wasm from './lib/space.cpp'
+// import {DOMRuler} from './lib/ruler.js'
 
 Vue.config.productionTip = false
 
@@ -18,20 +19,8 @@ Vue.use(Vuex)
 Vue.use(VuePhotonkit)
 Vue.component('app-header', Header)
 Vue.component('app-footer', Footer)
-
-// const domRuler = new ruler.DOMRuler()
-// const canvasRuler = new ruler.CanvasRuler()
-
-// console.time('DOM')
-// for (let i = 0; i < 10000; i++) {
-//     domRuler.getWidth(i + '')
-// }
-// console.timeEnd('DOM')
-// console.time('Canvas')
-// for (let i = 0; i < 10000; i++) {
-//     canvasRuler.getWidth(i + '')
-// }
-// console.timeEnd('Canvas')
+// const ruler = new DOMRuler()
+wasm.initialize().then(module => console.log((module.UTF8ToString(module._test()))))
 
 /* eslint-disable no-new */
 new Vue({
