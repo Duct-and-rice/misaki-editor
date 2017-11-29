@@ -10,7 +10,6 @@ import router from './router'
 import VuePhotonkit from 'vue-photonkit'
 import 'photon/dist/css/photon.css'
 import './assets/fonts.css'
-import wasm from './lib/space.cpp'
 // import {DOMRuler} from './lib/ruler.js'
 
 Vue.config.productionTip = false
@@ -20,7 +19,6 @@ Vue.use(VuePhotonkit)
 Vue.component('app-header', Header)
 Vue.component('app-footer', Footer)
 // const ruler = new DOMRuler()
-wasm.initialize().then(module => console.log((module.UTF8ToString(module._test()))))
 
 /* eslint-disable no-new */
 new Vue({

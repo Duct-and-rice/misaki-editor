@@ -19,13 +19,30 @@ describe('Ruler', function () {
 
     describe('Width', function () {
         this.timeout(10000)
-        before(done => {
+        before(function (done) {
             WebFont.load({
                 custom: {
                     families: ['Stmr']
                 },
-                fontactive: () => {
+                loading: function () {
+                    console.log('loading')
+                },
+                active: function () {
+                    console.log('active')
                     done()
+                },
+                inactive: function () {
+                    console.log('inactive')
+                    done()
+                },
+                fontloading: function (familyName, fvd) {
+                    console.log('fontloading', familyName, fvd)
+                },
+                fontactive: function (familyName, fvd) {
+                    console.log('fontactive', familyName, fvd)
+                },
+                fontinactive: function (familyName, fvd) {
+                    console.log('fontinactive', familyName, fvd)
                 }
             })
         })

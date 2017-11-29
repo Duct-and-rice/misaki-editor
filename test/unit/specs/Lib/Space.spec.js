@@ -1,7 +1,5 @@
 import {CanvasRuler} from '@/lib/ruler'
 import {generateSpaceFromAH, adjustWithUnicode, default as widthSpace} from '@/lib/space'
-import {SPACES} from '@/lib/space.js'
-import wasm from '@/lib/space.c'
 
 describe('Space', function () {
     it('Ideographic Space', function () {

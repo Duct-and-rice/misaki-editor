@@ -1,9 +1,9 @@
 @font-face {
     font-family:'Stmr';
-    src:url('fonts/Saitamaar.eot');
-    src:local('Saitamaar'),
+    src:url('fonts/Saitamaar.woff2') format('woff2');
+    src:
         url('fonts/Saitamaar.eot?#iefix') format('embedded-opentype'),
-        url('fonts/Saitamaar.woff2') format('woff2'),
+        url('fonts/Saitamaar.eot'),
         url('fonts/Saitamaar.woff') format('woff'),
         url('fonts/Saitamaar.ttf') format('truetype');
     font-weight:normal;

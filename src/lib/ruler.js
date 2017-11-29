@@ -60,7 +60,7 @@ export class CanvasRuler {
             context.font = '16px Stmr'
             const metrics = context.measureText(str)
             this.isLock = false
-            return metrics.width
+            return Math.round(metrics.width)
         }
     }
 }
