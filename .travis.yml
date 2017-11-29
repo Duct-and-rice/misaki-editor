@@ -12,6 +12,7 @@ before_install:
     - sudo dpkg -i google-chrome*.deb
     - git clone https://github.com/urho3d/emscripten-sdk ~/emsdk
     - source ~/emsdk/emsdk_env.sh
+    - export PATH=$PATH:~/emsdk/emscripten/master/
 
 dist: trusty
 sudo: false
